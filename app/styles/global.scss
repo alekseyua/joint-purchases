@@ -1,0 +1,67 @@
+@use './fonts/index';
+
+
+:root {
+    --primary-color: #1D1D1D;
+    --secondary-color: #707579;
+    --tertiary-color: #3C3C3C;
+    --background-color: #EBEBEB;
+    --text-color: #ffffff;
+    --text-color-placeholder: #C2C2C2;
+
+    --font-family: 'Involve', sans-serif;
+    --font-size: 12px;
+    --border-radius: 20px;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --color-badge: #ff0000;
+
+    // badges status colors
+    --color-status-success: #10BC00;
+    --color-status-error: #BC0000;
+    --color-status-load: #0077BC;
+    --color-status-move: #10BC00;
+    --color-status-customs: #BC7400;
+    --color-status-move-motherland: #BCA300;
+    --color-status-container-despatch: #707579;
+    // products status colors
+    --color-product-bought-emirate: #10BC00;
+    --color-product-load-emirate: #7700BC;
+    --color-product-order: #BC0000;
+    --color-product-motherland-despatch: #0077BC;
+    --color-product-customs: #BCA300;
+    --color-product-end-despatch: #707579;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    color: var(--text-color);
+    background-color: var(--background-color);
+    line-height: 100%;
+}
+
+body{
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+}
+
+h1{
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+h2{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+p{
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--primary-color);
+}

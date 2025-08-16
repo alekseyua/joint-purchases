@@ -1,0 +1,51 @@
+.input {
+
+    //input__container
+    &__container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background-color: var(--tertiary-color);
+        border-radius: 12px;
+        border: 1px solid var(--secondary-color);
+        &> input {
+            width: 100%;
+            background-color: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: var(--font-size);
+            padding-left: 30px; // space for the icon
+        }
+        &> input:focus {
+            outline: none;  
+            box-shadow: var(--box-shadow);
+        }
+        &> input::placeholder {
+            font-family: var(--font-family);
+            color: var(--text-color-placeholder);
+            font-size: var(--font-size);
+            opacity: 0.5;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            letter-spacing: .3px;
+
+        }
+
+    }
+    &__icon {
+        //input__icon-left
+        &-left {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 17px;
+            height: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
