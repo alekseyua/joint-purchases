@@ -4,7 +4,7 @@ WORKDIR /app
 RUN npm ci
 
 FROM node:20-alpine AS production-dependencies-env
-COPY ./package.json package-lock.json /app/
+COPY ./package.json yarn.lock /app/
 WORKDIR /app
 RUN yarn install --frozen-lockfile
 
