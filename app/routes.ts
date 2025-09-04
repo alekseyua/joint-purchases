@@ -1,14 +1,10 @@
-import { type RouteConfig, index, route } from "@react-router/dev/routes";
+import { type RouteConfig, index, layout, route } from "@react-router/dev/routes";
 
 export default [
+  layout("routes/Layout/Layout.tsx", [
     index("routes/Main/MainContainer.tsx"),
-    // route("routes/root.tsx", {
-    //     id: "routes/root",
-    //     children: [
-    //         route("routes/Main.tsx", {
-    //             id: "routes/Main",
-    //             children: [],
-    //         }),
-    //     ],
-    // }),
+    route("instruction", "routes/Instruction/InstructionContainer.tsx"),
+    route("notification", "routes/Notification/NotificationContainer.tsx"),
+    route("support", "routes/Support/SupportContainer.tsx"),
+  ]),
 ] satisfies RouteConfig;

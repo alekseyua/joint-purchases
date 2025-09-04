@@ -7,6 +7,14 @@
         background-color: var(--primary-color);
         border-radius: var(--border-radius);
         padding: 14px;
+        //header__container--small
+        &--small{
+            display: flex;
+            flex-direction: column;
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+
+        }
     }
 
     //header__top
@@ -15,6 +23,12 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 18px;
+        //header__top--small
+        &--small{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
 
     //header__logo

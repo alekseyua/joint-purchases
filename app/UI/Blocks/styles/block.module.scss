@@ -5,5 +5,41 @@
         flex-direction: column;
         width: 100%;
         height: 100%; //?
+        margin: 0 auto;
+        max-width: 375px;
     }
+    &__info{
+        //block__info-container
+        &-container{
+            display: flex;
+            flex-direction: column;
+            background-color: var(--background-color-white);
+            padding: 12px;
+            border-radius: 10px;
+            position: relative;
+        }
+    }
+    //block__line
+    &__line{
+        width: 100%;
+        height: 1px;
+        background-color: var(--border-color);
+    }
+
+    //grid
+    &__grid{
+        display: grid;
+        position: relative;
+    }
+    &__flex{
+        position: relative;
+        display: flex;
+        // block__flex--column
+        &--column{
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
 }

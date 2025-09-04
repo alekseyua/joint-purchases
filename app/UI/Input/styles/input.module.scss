@@ -15,7 +15,7 @@
             border: none;
             color: var(--text-color);
             font-size: var(--font-size);
-            padding-left: 30px; // space for the icon
+            padding-left: 20px; // space for the icon
         }
         &> input:focus {
             outline: none;  
@@ -38,9 +38,7 @@
         //input__icon-left
         &-left {
             position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
+            left: 6px;
             width: 17px;
             height: 17px;
             display: flex;

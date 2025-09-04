@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles/input.module.scss';
+import { Icon } from '../Icons/Icons';
 
 interface IProps {
   iconLeft?: string;
@@ -14,7 +15,7 @@ const Input:React.FC<IProps> = ({
     }: IProps) => {
     return (
         <div className={className + ' ' + styles["input__container"]}>
-        {iconLeft && <img className={styles["input__icon-left"]} src={iconLeft} />}
+        {iconLeft && <Icon className={styles["input__icon-left"]} src={iconLeft} />}
         <input 
             name='input'
             type="text" 

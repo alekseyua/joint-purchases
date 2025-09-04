@@ -10,20 +10,28 @@ import searchWhite from './icons/search-white.svg';
 import telegramWhite from './icons/telegram-white.svg';
 import searchBlackGray from './icons/search-black-gray.svg';
 import searchWhiteGray from './icons/search-white-gray.svg';
+import supportBlack from './icons/support-black.svg';
+import boxTaped from './icons/box-taped.svg';
+import arrowDownBlack from './icons/arrow-down-black.svg';
+import arrowLeftBlack from './icons/arrow-left-back.svg';
 
 export const icons = {
-    read,
-    error,
-    unread,
-    avatar,
-    avatar2,
-    success,
-    aggregate,
-    searchBlack,
-    searchWhite,
-    telegramWhite,
-    searchBlackGray,
-    searchWhiteGray,
+  read,
+  error,
+  unread,
+  avatar,
+  avatar2,
+  success,
+  boxTaped,
+  aggregate,
+  searchBlack,
+  searchWhite,
+  supportBlack,
+  telegramWhite,
+  arrowLeftBlack,
+  arrowDownBlack,
+  searchBlackGray,
+  searchWhiteGray,
 };
 
 export type IconName = keyof typeof icons;

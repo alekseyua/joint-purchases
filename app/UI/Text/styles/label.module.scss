@@ -1,0 +1,10 @@
+.label{
+    &__container{
+        font-family: var(--font-family);
+        font-weight: 600;
+        font-size: var(--font-size);
+        line-height: 120%;
+        letter-spacing: 0.1px;
+        color: var(--primary-color);
+    }
+}
