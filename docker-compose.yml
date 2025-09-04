@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: join-purchases
+    ports:
+      - "4000:3000"  # Убедись, что твой сервер работает на этом порту
+    environment:
+      - NODE_ENV=production  # Устанавливаем режим окружения для продакшн
+    volumes:
+      - .:/app  # Монтируем локальную папку, чтобы можно было работать с кодом
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
