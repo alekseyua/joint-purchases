@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Instruction from './Instruction'
 
 type Props = {}

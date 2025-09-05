@@ -1,4 +1,4 @@
-import React from 'react';
+;
 import styles from './styles/button.module.scss';
 import { Link } from 'react-router';
 import { useNavigate } from "react-router";

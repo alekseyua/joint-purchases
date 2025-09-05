@@ -1,4 +1,3 @@
-import React from "react";
 import { icons } from "~/images";
 import type { IButtons, INotification } from "~/types/types";
 import Block from "~/UI/Blocks/Block";

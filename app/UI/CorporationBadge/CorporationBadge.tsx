@@ -1,4 +1,4 @@
-import React from 'react'
+
 import styles from './styles/corporation.module.scss';
 import Text from '../Text/Text';
 type Props = {}

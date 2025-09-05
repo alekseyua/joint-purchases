@@ -1,5 +1,3 @@
-
-import React from 'react'
 import Notification from './Notification'
 import type { INotification } from '~/types/types';
 
@@ -27,7 +25,7 @@ const NotificationContainer = (props: Props) => {
       },
       {
         title: "Ваш заказ в пути",
-        description: "Заказ отправлен и скоро прибудет в пункте доставки",
+        description: "Заказ отправлен и скоро прибудетв пункте доставки",
         status: "unread",
         buttons: [
           {

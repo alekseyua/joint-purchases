@@ -1,4 +1,3 @@
-import React from "react";
 import { icons } from "~/images";
 import type { IButtons, ISupport } from "~/types/types";
 import Block from "~/UI/Blocks/Block";
@@ -24,7 +23,7 @@ const Support: React.FC<Props> = ({ listSupports }: Props) => {
         text={
           "Помощь и ответы на часто задаваемые вопросы. Напишите нашим менеджерам, чтобы задать вопрос."
         }
-        style={{ fontWeight: 400}}
+        style={{ fontWeight: 400 }}
       />
       <Offset mt={14} />
       {!!listSupports.length ? (
@@ -35,7 +34,7 @@ const Support: React.FC<Props> = ({ listSupports }: Props) => {
               <Block variant="info-container" br={20}>
                 <Offset mt={6} />
                 <Block variant="grid" gtc="2fr 6fr 5fr">
-                  <Icon src={s.avatar? s.avatar : icons.avatar} size={40} />
+                  <Icon src={s.avatar ? s.avatar : icons.avatar} size={40} />
                   <Block variant="flex-column">
                     <Text
                       text={s.title}

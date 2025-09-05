@@ -1,4 +1,4 @@
-import React from 'react'
+
 import styles from './styles/avatar.module.scss';
 import { icons } from '~/images';
 import { Link } from 'react-router';

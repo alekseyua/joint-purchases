@@ -1,4 +1,4 @@
-import React, { type CSSProperties } from 'react';
+import { type CSSProperties } from 'react';
 import styles from './styles/block.module.scss';
 
 interface IProps {

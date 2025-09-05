@@ -1,8 +1,7 @@
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Support from './Support'
 import type { ISupport } from '~/types/types';
-import { icons } from '~/images';
 import axios from 'axios';
 
 type Props = {}

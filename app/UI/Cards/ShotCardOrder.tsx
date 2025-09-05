@@ -1,4 +1,3 @@
-import React from "react";
 import { Icon } from "../Icons/Icons";
 import { icons } from "~/images";
 import Badge from "../Badge/Badge";

@@ -1,6 +1,6 @@
 
 
-import React from 'react'
+
 import { Link } from 'react-router';
 import Block from '~/UI/Blocks/Block';
 import Container from '~/UI/Blocks/Container'

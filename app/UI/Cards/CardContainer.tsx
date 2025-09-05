@@ -1,4 +1,4 @@
-import React from 'react';
+;
 import styles from './styles/card.module.scss';
 
 interface CardContainerProps {

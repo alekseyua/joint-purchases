@@ -1,4 +1,4 @@
-import React from 'react';
+;
 import styles from './styles/input.module.scss';
 import { Icon } from '../Icons/Icons';
 
