@@ -67,6 +67,7 @@ const Notification: React.FC<Props> = ({ listNotifications }: Props) => {
           <Title title="Здесь будут Ваши Уведомления " tag="h2" />
         </>
       )}
+      <Offset mb={40} />
     </Container>
   );
 };

@@ -52,7 +52,7 @@ export default function Main({
             />
           }
           )}
-          <Offset mb={30} />
+          <Offset mb={40} />
         </CardContainer>
       ) : (
         <>

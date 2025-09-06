@@ -66,9 +66,10 @@ const Support: React.FC<Props> = ({ listSupports }: Props) => {
       ) : (
         <>
           <Offset mt={16} />
-          <Title title="Здесь будут Ваши Уведомления " tag="h2" />
+          {/* <Title title="Здесь будут Ваши Уведомления " tag="h2" /> */}
         </>
       )}
+      <Offset mb={40} />
     </Container>
   );
 };

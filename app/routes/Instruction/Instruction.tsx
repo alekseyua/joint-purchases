@@ -146,6 +146,7 @@ const Instruction:React.FC<Props> = (props: Props) => {
         />
         <Offset mt={6} />
       </Block>
+      <Offset mb={40} />
     </Container>
   );
 }
