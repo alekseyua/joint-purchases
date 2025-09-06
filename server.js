@@ -3,7 +3,7 @@ import express from "express";
 import { createRequestHandler } from "@react-router/express";
 import * as build from "./build/server/index.js"; // путь к твоему SSR-билду
 
-const app = express();
+const app = express(); 
 
 // Обслуживание статики
 app.use(express.static("build/client"));
