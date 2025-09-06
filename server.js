@@ -6,10 +6,10 @@ import * as build from "./build/server/index.js"; // путь к твоему SS
 const app = express(); 
 
 // Обслуживание статики
-app.use(express.static("build/client"));
+app.use(express.static("build/client")); 
 
 // SSR через React Router
-app.use(createRequestHandler({ build }));
+app.use(createRequestHandler({ build })); 
 // Игнорируем служебные запросы Chrome DevTools и др.
 app.use("/.well-known", (req, res) => {
   res.status(404).send("Not found");
