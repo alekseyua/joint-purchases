@@ -1,23 +1,26 @@
-FROM node:20-alpine AS development-dependencies-env
-COPY . /app
+# 1. Установка зависимостей
+FROM node:20-alpine AS deps
 WORKDIR /app
+COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
-FROM node:20-alpine AS production-dependencies-env
-COPY ./package.json yarn.lock server.js /app/ 
+# 2. Сборка приложения
+FROM node:20-alpine AS builder
 WORKDIR /app
-RUN yarn install --frozen-lockfile
-
-FROM node:20-alpine AS build-env
-COPY . /app/
-COPY --from=development-dependencies-env /app/node_modules /app/node_modules
-WORKDIR /app
+COPY . .
+COPY --from=deps /app/node_modules ./node_modules
 RUN yarn build
 
+# 3. Финальный образ
 FROM node:20-alpine
-COPY ./package.json yarn.lock server.js /app/ 
-COPY --from=production-dependencies-env /app/node_modules /app/node_modules
-COPY --from=build-env /app/build /app/build
 WORKDIR /app
+
+# Копируем только нужные файлы
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile --production
+
+COPY --from=builder /app/build ./build
+COPY --from=builder /app/server.js ./server.js
+
+EXPOSE 3000
 CMD ["node", "server.js"]
-# create ok test v15
