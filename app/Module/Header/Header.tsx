@@ -12,7 +12,7 @@ interface IProps {
   name?: string;
 }
 
-const Header: React.FC<IProps> = ({ name = "Андрей" }: IProps) => {
+const Header: React.FC<IProps> = ({ name = "Андрей-1" }: IProps) => {
   let location = useLocation();
   const [fullHeader, setFullHeader] = useState<boolean>(true);
 
