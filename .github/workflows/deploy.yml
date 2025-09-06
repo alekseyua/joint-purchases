@@ -20,7 +20,7 @@ jobs:
         script: |
           echo "== Deploy started =="
 
-          cd /var/telegram/front-apps/apps/joint-purchase
+          cd /var/telegram/front-apps/apps/joint-purchases
 
           echo "== Pulling latest changes =="
           git reset --hard
