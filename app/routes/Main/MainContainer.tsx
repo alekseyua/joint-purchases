@@ -108,7 +108,7 @@ export default function MainContainer() {
          const res = await axios.get(url);
          console.log(res);
          if (res.status === 200) {
-          const result:IListOrderShotView[] = res.data.info.message; 
+          const result:IListOrderShotView[] = res.data; 
           setListOrder(result)
          } else {
            const err = new Error("catch error request " + url);

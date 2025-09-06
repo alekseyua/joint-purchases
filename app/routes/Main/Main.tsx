@@ -35,8 +35,10 @@ export default function Main({
       <Offset mt={16} />
       {!!ListOrders.length ? (
         <CardContainer>
-          {ListOrders.map((o: IListOrderShotView) => (
-            <CardOrderShot
+          {ListOrders.map((o: IListOrderShotView) => {
+            console.log({o})
+
+            return <CardOrderShot
               handleOpenOrder={handleOpenOrder}
               openOrder={openOrder}
               key={o.id}
@@ -48,7 +50,8 @@ export default function Main({
               shipmentDate={o.shipment_date}
               products={o.products}
             />
-          ))}
+          }
+          )}
         </CardContainer>
       ) : (
         <>
