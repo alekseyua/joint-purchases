@@ -6,6 +6,7 @@ import CorporationBadge from '~/UI/CorporationBadge/CorporationBadge';
 
 
 const Layout:React.FC = () => {
+  
   return (
     <Container>
       <Header />

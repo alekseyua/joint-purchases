@@ -1,15 +1,20 @@
-interface IStatusDelivery {
-    color: string;
-    name: string;
+declare global {
+  interface Window {
+    Telegram: TelegramWebApp;
+  }
+}
 
+interface IStatusDelivery {
+  color: string;
+  name: string;
 }
 interface IProductsOrder {
-      id: number;
-      name: string;
-      status: IStatusDelivery;
-      product_image: string;
-      status_payment: boolean;
-      status_delivery: boolean;
+  id: number;
+  name: string;
+  status: IStatusDelivery;
+  product_image: string;
+  status_payment: boolean;
+  status_delivery: boolean;
 }
 interface IListOrderShotView {
   id: number;

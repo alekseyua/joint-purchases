@@ -7,15 +7,21 @@ import { icons } from "~/images";
 import { useLocation } from "react-router";
 import Button from "~/UI/Button/Button";
 import { Icon } from "~/UI/Icons/Icons";
+import { useTelegram, type TelegramContextType } from "~/context/TelegramContext";
 
 interface IProps {
-  name?: string;
+  // name?: string;
 }
 
-const Header: React.FC<IProps> = ({ name = "Андрей" }: IProps) => {
+const Header: React.FC<IProps> = ({ }: IProps) => {
   let location = useLocation();
   const [fullHeader, setFullHeader] = useState<boolean>(true);
+  const [name, setName] = useState<string | undefined>(undefined);
+  const {webApp}: TelegramContextType = useTelegram();
 
+  useEffect(()=>{
+    setName(webApp?.initDataUnsafe?.user?.username)
+  },[webApp])
   useEffect(() => {
     /**
      * если не корневой путь то тогда покажем короткое меню
@@ -42,7 +48,7 @@ const Header: React.FC<IProps> = ({ name = "Андрей" }: IProps) => {
         </div>
         <div className={styles["header__title-container"]}>
           <Title tag={"h2"} style={{ color: "var(--text-color)" }}>
-            Здравствуйте, {name}
+            Здравствуйте, {name && name}
           </Title>
         </div>
         <div className={styles["header__search-container"]}>

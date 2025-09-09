@@ -3,6 +3,7 @@ import type { Route } from "./+types/MainContainer";
 import Main from "./Main";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useTelegram, type TelegramContextType, type TelegramWebApp } from "~/context/TelegramContext";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -14,6 +15,7 @@ export function meta({}: Route.MetaArgs) {
 export default function MainContainer() {
   const [openOrder, setOpenOrder] = useState<number | null>(null);
   const [listOrder, setListOrder] = useState<IListOrderShotView[]>([]);
+  const {webApp}: TelegramContextType = useTelegram();
   const fakeListOrder: IListOrderShotView[] = [
     {
       id: 1,
@@ -104,12 +106,13 @@ export default function MainContainer() {
    useEffect(() => {
      const getFetchData = async function () {
        try {
-         const url = "https://botrazbor.ru/lk/api_get_containers/?telegram_id=1649083487";
+         const url =
+           `https://botrazbor.ru/lk/api_get_containers/?telegram_id=${webApp?.initDataUnsafe?.user?.id}`;
          const res = await axios.get(url);
          console.log(res);
          if (res.status === 200) {
-          const result:IListOrderShotView[] = res.data; 
-          setListOrder(result)
+           const result: IListOrderShotView[] = res.data.result;
+           setListOrder(result);
          } else {
            const err = new Error("catch error request " + url);
            console.log(err);
@@ -119,7 +122,7 @@ export default function MainContainer() {
        }
      };
      getFetchData();
-   }, []);
+   }, [webApp]);
 
   const handleOpenOrder = (id: number) => {
     if (openOrder === id) {
