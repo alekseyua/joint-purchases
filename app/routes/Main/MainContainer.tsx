@@ -106,8 +106,7 @@ export default function MainContainer() {
    useEffect(() => {
      const getFetchData = async function () {
        try {
-         const url =
-           `https://botrazbor.ru/lk/api_get_containers/?telegram_id=${webApp?.initDataUnsafe?.user?.id}`;
+         const url = `https://botrazbor.ru/lk/api_get_containers/?telegram_id=${webApp?.initDataUnsafe?.user?.id ?? 1797304609}`;
          const res = await axios.get(url);
          console.log(res);
          if (res.status === 200) {
