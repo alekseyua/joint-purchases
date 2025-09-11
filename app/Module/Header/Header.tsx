@@ -32,7 +32,7 @@ const Header: React.FC<IProps> = ({ }: IProps) => {
     setFullHeader(true);
     console.log({ location });
   }, [location]);
-
+   
   if (fullHeader) {
     return (
       <div className={styles["header__container"]}>
