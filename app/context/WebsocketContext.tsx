@@ -19,7 +19,7 @@ const WebSocketContext = createContext<WebSocketContext | null>(null);
 
 export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props}) => {
     const { webApp }: TelegramContextType = useTelegram();
-    const WEBSOCKET_URL = `wss://botrazbor.ru/ws/lk/?telegram_id=${webApp?.initDataUnsafe?.user?.id ?? 6446175339}`;
+    const WEBSOCKET_URL = 'wss://botrazbor.ru/ws/lk/';
     const RECONNECT_INTERVAL_MS = 3000;
     const socketRef = useRef<WebSocket | null>(null);
     const messageQueue = useRef<string[]>([]);
@@ -30,7 +30,7 @@ export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props})
 
     const connect = useCallback((id:string) => {
       console.log({id},webApp?.initDataUnsafe);
-      const socket = new WebSocket(WEBSOCKET_URL);
+      const socket = new WebSocket(WEBSOCKET_URL + `?telegram_id=${id ?? 6446175339}`);
       socketRef.current = socket;
 
       socket.onopen = () => {
