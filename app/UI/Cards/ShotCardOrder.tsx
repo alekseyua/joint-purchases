@@ -67,6 +67,9 @@ const CardOrderShot: React.FC<IProps> = ({
     {idOrder === openOrder && (
       <div className={styles["card__order-full-container"]}>
         <Offset mt={18} />
+        <Offset mt={6} />
+        <Title tag="div" title="Логистика" style={{ fontWeight: 400 }} />
+        <Offset mt={6} />
         <div className={styles["card__order-product-section-container"]}>
           <div className={styles["card__order-full-container--detail"]}>
             <Text text="Адрес доставки" style={{ fontWeight: 400 }} />
