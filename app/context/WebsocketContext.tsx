@@ -63,7 +63,7 @@ export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props})
     }, []);
 
     const reconnect = useCallback(() => {
-      if (reconnectTimeout.current) return;
+      if (reconnectTimeout.current && !!webApp?.initDataUnsafe.user.id) return;
 
       reconnectTimeout.current = setTimeout(() => {
         reconnectTimeout.current = null;
@@ -90,6 +90,7 @@ export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props})
     }, []);
 
     useEffect(() => {
+      if (!!!webApp?.initDataUnsafe.user.id) return;
       connect(webApp?.initDataUnsafe.user.id + "");
 
       return () => {
