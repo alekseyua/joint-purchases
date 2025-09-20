@@ -10,6 +10,7 @@ import './styles/global.scss';
 import type { Route } from "./+types/root";
 import { useEffect, useState } from "react";
 import TelegramProvider from "./context/TelegramContext";
+import { WebSocketProvider } from "./context/WebsocketContext";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   
@@ -25,7 +26,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <TelegramProvider>
-          {children}
+          <WebSocketProvider>
+            {children}
+          </WebSocketProvider>
         </TelegramProvider>
         <ScrollRestoration />
         <Scripts />

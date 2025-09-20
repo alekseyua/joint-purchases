@@ -4,6 +4,7 @@ import Main from "./Main";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useTelegram, type TelegramContextType, type TelegramWebApp } from "~/context/TelegramContext";
+import { useWebSocket, type WebSocketContext } from "~/context/WebsocketContext";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -16,112 +17,32 @@ export default function MainContainer() {
   const [openOrder, setOpenOrder] = useState<number | null>(null);
   const [listOrder, setListOrder] = useState<IListOrderShotView[]>([]);
   const {webApp}: TelegramContextType = useTelegram();
-  const fakeListOrder: IListOrderShotView[] = [
-    {
-      id: 1,
-      image: "",
-      name: "Контейнер №1",
-      status: {
-        color: "#BC7400",
-        name: "На таможне ",
-      },
-      address: "г. Краснодар ул. Ленина дом 7",
-      shipment_date: "~01.09.2025",
-      products: [
-        {
-          id: 0,
-          name: "Агрегат",
-          status: {
-            color: "#10BC00",
-            name: "Товар куплен в Эмиратах",
-          },
-          product_image: "",
-          status_payment: false,
-          status_delivery: false,
-        },
-      ],
-    },
-    {
-      id: 2,
-      image: "",
-      name: "Контейнер №4",
-      status: {
-        color: "#10BC00",
-        name: "В пути",
-      },
-      address: "г. Краснодар ул. Ленина дом 7",
-      shipment_date: "~01.09.2025",
-      products: [
-        {
-          id: 0,
-          name: "Агрегат",
-          status: {
-            color: "#10BC00",
-            name: "Товар куплен в Эмиратах",
-          },
-          product_image: "",
-          status_payment: true,
-          status_delivery: false,
-        },
-        {
-          id: 1,
-          name: "Кузовной элемент",
-          status: {
-            color: "#0077BC",
-            name: "Товар в России - к отгрузке",
-          },
-          product_image: "",
-          status_payment: false,
-          status_delivery: true,
-        },
-      ],
-    },
-    {
-      id: 3,
-      image: "",
-      name: "Контейнер №3",
-      status: {
-        color: "#707579",
-        name: "Контейнер отгружен",
-      },
-      address: "г. Краснодар ул. Ленина дом 7",
-      shipment_date: "~01.09.2025",
-      products: [
-        {
-          id: 0,
-          name: "",
-          status: {
-            color: "",
-            name: "",
-          },
-          product_image: "",
-          status_payment: false,
-          status_delivery: false,
-        },
-      ],
-    },
-  ];
+  const {
+    sendMessage,
+    addMessageListener,
+    removeMessageListener,
+    isConnected,
+  }: WebSocketContext = useWebSocket();
 
-  //
-   useEffect(() => {
-     const getFetchData = async function () {
-       try {
-         const url = `https://botrazbor.ru/lk/api_get_containers/?telegram_id=${webApp?.initDataUnsafe?.user?.id ?? 1797304609}`;
-         const res = await axios.get(url);
-         console.log(res);
-         if (res.status === 200) {
-           const result: IListOrderShotView[] = res.data.result;
-           setListOrder(result);
-         } else {
-           const err = new Error("catch error request " + url);
-           console.log(err);
-         }
-       } catch (error) {
-         console.log((error as Error).message);
-       }
-     };
-     getFetchData();
-   }, [webApp]);
+  useEffect(() => {
+    const handleMessage = (data: any) => {
+      const obj: {
+        containers_data: IListOrderShotView[];
+        message: string;
+        type: string;
+      } = JSON.parse(data);
+      console.log("[Client] Получено сообщение:", obj);
+      if(obj?.containers_data){
+           setListOrder(obj.containers_data);
+      }
+    };
+
+    addMessageListener(handleMessage);
+
+    return () => {
+      removeMessageListener(handleMessage);
+    };
+  }, [addMessageListener, removeMessageListener]);
 
   const handleOpenOrder = (id: number) => {
     if (openOrder === id) {
@@ -129,6 +50,7 @@ export default function MainContainer() {
     }
     setOpenOrder(id);
   };
+  console.log({ listOrder });
   return (
     <Main
       ListOrders={listOrder}

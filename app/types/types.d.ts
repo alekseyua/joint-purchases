@@ -11,20 +11,28 @@ interface IStatusDelivery {
 interface IProductsOrder {
   id: number;
   name: string;
-  status: IStatusDelivery;
-  product_image: string;
-  status_payment: boolean;
-  status_delivery: boolean;
+  // status: IStatusDelivery;
+  // product_image: string;
+  // status_payment: boolean;
+  // status_delivery: boolean;
+  weight: number;
+  product_sum: number;
+  product_type: string;
 }
 interface IListOrderShotView {
   id: number;
-  image: string;
+  image: string | null;
   name: string;
   status: IStatusDelivery;
-  address: string;
-  shipment_date: string;
   products: IProductsOrder[];
+  amounts: IAmounts;
 }
+  
+  interface IAmounts {
+    paid_amount: number;
+    total_amount: number;
+    rest_amount: number;
+  }
 
 interface IButtons {
   name: string;
@@ -50,6 +58,7 @@ export {
   IStatusDelivery,
   IProductsOrder,
   INotification,
+  IAmounts,
   ISupport,
   IButtons,
 };

@@ -36,20 +36,23 @@ export default function Main({
       {!!ListOrders.length ? (
         <CardContainer>
           {ListOrders.map((o: IListOrderShotView) => {
-            console.log({o})
+            // console.log({o})
 
-            return <CardOrderShot
-              handleOpenOrder={handleOpenOrder}
-              openOrder={openOrder}
-              key={o.id}
-              idOrder={o.id}
-              title={o.name}
-              status={o.status.name}
-              statusColor={o.status.color}
-              address={o.address}
-              shipmentDate={o.shipment_date}
-              products={o.products}
-            />
+            return (
+              <CardOrderShot
+                handleOpenOrder={handleOpenOrder}
+                openOrder={openOrder}
+                key={o.id}
+                idOrder={o.id}
+                title={o.name}
+                status={o.status.name}
+                statusColor={o.status.color}
+                amounts={o.amounts}
+                // address={o.address}
+                // shipmentDate={o.shipment_date}
+                products={o.products}
+              />
+            );
           }
           )}
           <Offset mb={40} />

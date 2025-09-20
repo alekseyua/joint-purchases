@@ -4,8 +4,10 @@ import Badge from "../Badge/Badge";
 import styles from "./styles/card.module.scss";
 import Text from "../Text/Text";
 import Offset from "../Blocks/Offset";
-import type { IProductsOrder } from "~/types/types";
+import type { IAmounts, IProductsOrder } from "~/types/types";
 import Button from "../Button/Button";
+import Block from "../Blocks/Block";
+import Title from "../Title/Title";
 
 type IProps = {
   openOrder: number | null;
@@ -14,9 +16,11 @@ type IProps = {
   status: string;
   statusColor?: string;
   idOrder: number;
-  shipmentDate: string;
-  address: string;
-  products: IProductsOrder[]
+  amounts: IAmounts;
+  // shipmentDate: string;
+  // address: string;
+
+  products: IProductsOrder[];
 
   handleOpenOrder: (id: number) => void;
 };
@@ -25,12 +29,13 @@ const CardOrderShot: React.FC<IProps> = ({
   title,
   status,
   idOrder,
-  address,
+  amounts,
+  // address,
   products,
   imageSrc,
   openOrder,
   statusColor = "#fff",
-  shipmentDate,
+  // shipmentDate,
   handleOpenOrder,
 }: IProps) => (
   <div className={styles["card__order-item-container"]}>
@@ -64,23 +69,70 @@ const CardOrderShot: React.FC<IProps> = ({
         <Offset mt={18} />
         <div className={styles["card__order-full-container--detail"]}>
           <Text text="Адрес доставки" style={{ fontWeight: 400 }} />
-          <Text text={address} style={{ fontWeight: 700 }} />
+          <Text
+            text={
+              "not data ws json"
+              // address
+            }
+            style={{ fontWeight: 700 }}
+          />
         </div>
         <Offset mt={16} />
         <div className={styles["card__order-full-container--detail"]}>
           <Text text="Дата отгрузки" style={{ fontWeight: 400 }} />
-          <Text text={shipmentDate} style={{ fontWeight: 700 }} />
+          <Text
+            text={
+              "not data ws json"
+              // shipmentDate
+            }
+            style={{ fontWeight: 700 }}
+          />
         </div>
         <Offset mt={16} />
 
+        {/* finance data */}
+        <Offset mt={6} />
+        <Title tag="div" title="Финансы" style={{ fontWeight: 400 }} />
+        <Offset mt={6} />
+        <div className={styles["card__order-product-section-container"]}>
+          <Block variant="grid" gtc="2fr 1fr 1fr">
+            <Block variant="flex-column" gap={4}>
+              <Text text=" Общая сумма" style={{ fontWeight: 400 }} />
+              <Text
+                text={amounts.total_amount.toString() + " ₽"}
+                style={{ fontWeight: 700 }}
+              />
+            </Block>
+            <Block variant="flex-column" gap={4}>
+              <Text center text=" Оплачено" style={{ fontWeight: 400 }} />
+              <Text
+                center
+                text={amounts.paid_amount.toString() + " ₽"}
+                style={{ fontWeight: 700 }}
+              />
+            </Block>
+            <Block variant="flex-column" gap={4}>
+              <Text center text=" Доплатить" style={{ fontWeight: 400 }} />
+              <Text
+                center
+                text={amounts.rest_amount.toString() + " ₽"}
+                style={{ fontWeight: 700, color: "red" }}
+              />
+            </Block>
+          </Block>
+        </div>
+
+        <Offset mt={6} />
+        <Title tag="div" title="Товары" style={{ fontWeight: 400 }} />
+        <Offset mt={6} />
         {/* table products */}
         <div className={styles["card__order-product-container"]}>
-          {/* header */}
+          {/* header
           <div className={styles["card__order-product-header-container"]}>
             <Text text="Товары" style={{ fontWeight: 400, fontSize: 10 }} />
             <Text text="Товар" style={{ fontWeight: 400, fontSize: 10 }} />
             <Text text="Доставка" style={{ fontWeight: 400, fontSize: 10 }} />
-          </div>
+          </div> */}
           {/* body */}
           {products.map((p: IProductsOrder) => (
             <div className={styles["card__order-product-body-container"]}>
@@ -90,7 +142,10 @@ const CardOrderShot: React.FC<IProps> = ({
                   className={styles["card__order-product-card-container-image"]}
                 >
                   <Icon
-                    src={p.product_image ?? icons.boxTaped}
+                    src={
+                      //p?.product_image ?? нет изображения с ws
+                      icons.boxTaped
+                    }
                     size={32}
                     style={{ zIndex: 2 }}
                   />
@@ -109,42 +164,26 @@ const CardOrderShot: React.FC<IProps> = ({
                   {/* Title */}
                   <Text text={p.name} />
                   {/* Status Badge */}
-                  <Badge
-                    color={p.status.color}
-                    textStatus={p.status.name}
-                    isBadge={false}
-                  />
                 </div>
-                {/* status product*/}
-                <div
-                  className={
-                    styles["card__order-product-card-container-status"]
-                  }
-                >
-                  <Icon
-                    src={p.status_payment ? icons.success : icons.error}
-                    size={12}
-                  />
-                  <Text
-                    text={p.status_payment ? "Оплачено" : "Не оплачено"}
-                    style={{ fontSize: 6 }}
-                  />
-                </div>
+
                 {/* status shipment*/}
 
                 <div
                   className={
-                    styles["card__order-product-card-container-status"]
+                    styles["card__order-product-card-container--price-product"]
                   }
                 >
-                  <Icon
+                  <Text text={p.product_sum + " ₽"} />
+                  <Text text={"$ " + "???"} style={{ fontWeight: 400 }} />
+
+                  {/* <Icon
                     src={p.status_delivery ? icons.success : icons.error}
                     size={12}
                   />
                   <Text
                     text={p.status_delivery ? "Оплачено" : "Не оплачено"}
                     style={{ fontSize: 6 }}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>
