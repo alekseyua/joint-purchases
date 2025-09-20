@@ -28,8 +28,8 @@ export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props})
     const [isConnected, setIsConnected] = useState  (false);
     const reconnectTimeout = useRef<NodeJS.Timeout | null>(null);
 
-    const connect = useCallback(() => {
-      console.log(webApp?.initDataUnsafe);
+    const connect = useCallback((id:string) => {
+      console.log({id},webApp?.initDataUnsafe);
       const socket = new WebSocket(WEBSOCKET_URL);
       socketRef.current = socket;
 
@@ -67,9 +67,9 @@ export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props})
 
       reconnectTimeout.current = setTimeout(() => {
         reconnectTimeout.current = null;
-        connect();
+        connect(webApp?.initDataUnsafe.user.id + '');
       }, RECONNECT_INTERVAL_MS);
-    }, [connect]);
+    }, [connect, webApp]);
 
     const sendMessage = useCallback((msg: string) => {
       const socket = socketRef.current;
@@ -90,13 +90,13 @@ export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props})
     }, []);
 
     useEffect(() => {
-      connect();
+      connect(webApp?.initDataUnsafe.user.id + "");
 
       return () => {
         socketRef.current?.close();
         if (reconnectTimeout.current) clearTimeout(reconnectTimeout.current);
       };
-    }, [connect, reconnect]);
+    }, [connect, reconnect, webApp]);
 
     return (
       <WebSocketContext.Provider
