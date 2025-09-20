@@ -28,9 +28,9 @@ export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props})
     const [isConnected, setIsConnected] = useState  (false);
     const reconnectTimeout = useRef<NodeJS.Timeout | null>(null);
 
-    const connect = useCallback((id:string) => {
+    const connect = useCallback((id:number) => {
       console.log({id},webApp?.initDataUnsafe);
-      const socket = new WebSocket(WEBSOCKET_URL + `?telegram_id=${id ?? 6446175339}`);
+      const socket = new WebSocket(WEBSOCKET_URL + `?telegram_id=${id}`);
       socketRef.current = socket;
 
       socket.onopen = () => {
@@ -67,7 +67,7 @@ export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props})
 
       reconnectTimeout.current = setTimeout(() => {
         reconnectTimeout.current = null;
-        connect(webApp?.initDataUnsafe.user.id + '');
+        connect(webApp?.initDataUnsafe.user.id);
       }, RECONNECT_INTERVAL_MS);
     }, [connect, webApp]);
 
@@ -90,8 +90,9 @@ export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props})
     }, []);
 
     useEffect(() => {
-      if (!!!webApp?.initDataUnsafe.user.id) return;
-      connect(webApp?.initDataUnsafe.user.id + "");
+      const id = webApp?.initDataUnsafe.user.id //?? 6446175339;
+      if (!!!id) return;
+      connect(id);
 
       return () => {
         socketRef.current?.close();
