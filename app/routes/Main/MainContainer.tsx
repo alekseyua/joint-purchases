@@ -48,7 +48,7 @@ export default function MainContainer() {
     if (openOrder === id) {
       return setOpenOrder(null);
     }
-    setOpenOrder(id);
+    setOpenOrder(id); 
   };
   console.log({ listOrder });
   return (
