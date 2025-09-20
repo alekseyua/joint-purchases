@@ -67,26 +67,28 @@ const CardOrderShot: React.FC<IProps> = ({
     {idOrder === openOrder && (
       <div className={styles["card__order-full-container"]}>
         <Offset mt={18} />
-        <div className={styles["card__order-full-container--detail"]}>
-          <Text text="Адрес доставки" style={{ fontWeight: 400 }} />
-          <Text
-            text={
-              "not data ws json"
-              // address
-            }
-            style={{ fontWeight: 700 }}
-          />
-        </div>
-        <Offset mt={16} />
-        <div className={styles["card__order-full-container--detail"]}>
-          <Text text="Дата отгрузки" style={{ fontWeight: 400 }} />
-          <Text
-            text={
-              "not data ws json"
-              // shipmentDate
-            }
-            style={{ fontWeight: 700 }}
-          />
+        <div className={styles["card__order-product-section-container"]}>
+          <div className={styles["card__order-full-container--detail"]}>
+            <Text text="Адрес доставки" style={{ fontWeight: 400 }} />
+            <Text
+              text={
+                "not data ws json"
+                // address
+              }
+              style={{ fontWeight: 700 }}
+            />
+          </div>
+          <Offset mt={16} />
+          <div className={styles["card__order-full-container--detail"]}>
+            <Text text="Дата отгрузки" style={{ fontWeight: 400 }} />
+            <Text
+              text={
+                "not data ws json"
+                // shipmentDate
+              }
+              style={{ fontWeight: 700 }}
+            />
+          </div>
         </div>
         <Offset mt={16} />
 
@@ -174,7 +176,7 @@ const CardOrderShot: React.FC<IProps> = ({
                   }
                 >
                   <Text text={p.product_sum + " ₽"} />
-                  <Text text={"$ " + "???"} style={{ fontWeight: 400 }} />
+                  {/* <Text text={"$ " + "???"} style={{ fontWeight: 400 }} /> */}
 
                   {/* <Icon
                     src={p.status_delivery ? icons.success : icons.error}

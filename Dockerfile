@@ -2,7 +2,7 @@
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile --no-cache
 
 # 2. Сборка приложения
 FROM node:20-alpine AS builder
@@ -17,7 +17,7 @@ WORKDIR /app
 
 # Копируем только нужные файлы
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile --production
+RUN yarn install --frozen-lockfile --no-cache --production
 
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/server.js ./server.js
