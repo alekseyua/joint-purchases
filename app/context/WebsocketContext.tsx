@@ -13,7 +13,8 @@ export interface WebSocketContext {
   addMessageListener: (fn: MessageHandler) => void;
   removeMessageListener: (fn: MessageHandler) => void;
   isConnected: boolean;
-} //RefObject<WebSocket | null>;
+} 
+//RefObject<WebSocket | null>;
 const WebSocketContext = createContext<WebSocketContext | null>(null);
 
 export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props}) => {
@@ -28,6 +29,7 @@ export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props})
     const reconnectTimeout = useRef<NodeJS.Timeout | null>(null);
 
     const connect = useCallback(() => {
+      console.log(webApp?.initDataUnsafe);
       const socket = new WebSocket(WEBSOCKET_URL);
       socketRef.current = socket;
 
