@@ -61,7 +61,7 @@ const Header: React.FC<IProps> = ({ }: IProps) => {
       </div>
     );
   }
-
+console.log(webApp?.initDataUnsafe?.chat?.photo_url);
   return (
     <div className={styles["header__container--small"]}>
       <div className={styles["header__top--small"]}>
@@ -72,7 +72,7 @@ const Header: React.FC<IProps> = ({ }: IProps) => {
         >
           {""}
         </Button>
-        <Avatar />
+        <Avatar avatar={webApp?.initDataUnsafe?.chat?.photo_url} />
       </div>
     </div>
   );

@@ -110,11 +110,18 @@ const CardOrderShot: React.FC<IProps> = ({
             </Block>
             <Block variant="flex-column" gap={4}>
               <Text center text=" Оплачено" style={{ fontWeight: 400 }} />
-              <Text
-                center
-                text={amounts.paid_amount.toString() + " ₽"}
-                style={{ fontWeight: 700 }}
-              />
+              <Block variant="flex" gap={5}>
+                <Text
+                  center
+                  text={amounts.paid_amount.sum.toString() + "₽"}
+                  style={{ fontWeight: 700 }}
+                />
+                <Text
+                  center
+                  text={"(" + amounts.paid_amount.percent.toString() + "%)"}
+                  style={{ fontWeight: 700, color: "#10BC00" }}
+                />
+              </Block>
             </Block>
             <Block variant="flex-column" gap={4}>
               <Text center text=" Доплатить" style={{ fontWeight: 400 }} />

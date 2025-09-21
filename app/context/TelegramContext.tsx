@@ -15,6 +15,13 @@ export type TelegramWebApp = {
       allows_write_to_pm: boolean; //	Optional. True, if this user allowed the bot to message them.
       photo_url: string; //	Optional. URL of the user’s profile photo. The photo can be in .jpeg or .svg formats.
     };
+    chat: {
+      id: number;
+      type: string;
+      title: string;
+      username: string;
+      photo_url: string;
+    };
   };
 };
 

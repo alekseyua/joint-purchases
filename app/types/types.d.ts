@@ -27,9 +27,12 @@ interface IListOrderShotView {
   products: IProductsOrder[];
   amounts: IAmounts;
 }
-  
+  interface IPaidAmount {
+    percent: number;
+    sum: number;
+  }
   interface IAmounts {
-    paid_amount: number;
+    paid_amount: IPaidAmount;
     total_amount: number;
     rest_amount: number;
   }

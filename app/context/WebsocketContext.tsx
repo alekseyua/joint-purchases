@@ -90,7 +90,7 @@ export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props})
     }, []);
 
     useEffect(() => {
-      const id = webApp?.initDataUnsafe.user.id //?? 6446175339;
+      const id = webApp?.initDataUnsafe?.user?.id ?? 6446175339;
       if (!!!id) return;
       connect(id);
 
