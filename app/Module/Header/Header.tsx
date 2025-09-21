@@ -22,8 +22,8 @@ const Header: React.FC<IProps> = ({ }: IProps) => {
 
   useEffect(()=>{
     setName(webApp?.initDataUnsafe?.user?.username);
-    setAvatar(webApp?.initDataUnsafe?.chat?.photo_url);
-console.log(webApp?.initDataUnsafe?.chat?.photo_url);
+    setAvatar(webApp?.initDataUnsafe?.user?.photo_url);
+console.log(webApp?.initDataUnsafe?.user?.photo_url);
 
   },[webApp])
   useEffect(() => {
