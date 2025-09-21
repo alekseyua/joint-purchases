@@ -67,7 +67,7 @@ export const WebSocketProvider:React.FC<IPropsProvider> = ({children, ...props})
 
       reconnectTimeout.current = setTimeout(() => {
         reconnectTimeout.current = null;
-        connect(webApp?.initDataUnsafe.user.id);
+        webApp?.initDataUnsafe.user.id && connect(webApp?.initDataUnsafe.user.id);
       }, RECONNECT_INTERVAL_MS);
     }, [connect, webApp]);
 
