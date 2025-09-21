@@ -17,10 +17,14 @@ const Header: React.FC<IProps> = ({ }: IProps) => {
   let location = useLocation();
   const [fullHeader, setFullHeader] = useState<boolean>(true);
   const [name, setName] = useState<string | undefined>(undefined);
+  const [avatar, setAvatar] = useState<string | undefined>(undefined);
   const {webApp}: TelegramContextType = useTelegram();
 
   useEffect(()=>{
-    setName(webApp?.initDataUnsafe?.user?.username)
+    setName(webApp?.initDataUnsafe?.user?.username);
+    setAvatar(webApp?.initDataUnsafe?.chat?.photo_url);
+console.log(webApp?.initDataUnsafe?.chat?.photo_url);
+
   },[webApp])
   useEffect(() => {
     /**
@@ -32,7 +36,6 @@ const Header: React.FC<IProps> = ({ }: IProps) => {
     setFullHeader(true);
     console.log({ location });
   }, [location]);
-console.log(webApp?.initDataUnsafe?.chat?.photo_url);
    
   if (fullHeader) {
     return (
@@ -45,7 +48,7 @@ console.log(webApp?.initDataUnsafe?.chat?.photo_url);
           >
             Logo
           </Title>
-          <Avatar avatar={webApp?.initDataUnsafe?.chat?.photo_url} />
+          <Avatar avatar={avatar} />
         </div>
         <div className={styles["header__title-container"]}>
           <Title tag={"h2"} style={{ color: "var(--text-color)" }}>
@@ -72,7 +75,7 @@ console.log(webApp?.initDataUnsafe?.chat?.photo_url);
         >
           {""}
         </Button>
-        <Avatar avatar={webApp?.initDataUnsafe?.chat?.photo_url} />
+        <Avatar avatar={avatar} />
       </div>
     </div>
   );
