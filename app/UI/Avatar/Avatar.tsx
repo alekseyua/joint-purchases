@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 interface IProps {
     image?: string;
     countMsg?: number;
-    avatar: string;
+    avatar: string | undefined;
 }
 
 const Avatar:React.FC<IProps> = ({

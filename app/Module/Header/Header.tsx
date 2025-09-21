@@ -32,6 +32,7 @@ const Header: React.FC<IProps> = ({ }: IProps) => {
     setFullHeader(true);
     console.log({ location });
   }, [location]);
+console.log(webApp?.initDataUnsafe?.chat?.photo_url);
    
   if (fullHeader) {
     return (
@@ -44,7 +45,7 @@ const Header: React.FC<IProps> = ({ }: IProps) => {
           >
             Logo
           </Title>
-          <Avatar />
+          <Avatar avatar={webApp?.initDataUnsafe?.chat?.photo_url} />
         </div>
         <div className={styles["header__title-container"]}>
           <Title tag={"h2"} style={{ color: "var(--text-color)" }}>
@@ -61,7 +62,6 @@ const Header: React.FC<IProps> = ({ }: IProps) => {
       </div>
     );
   }
-console.log(webApp?.initDataUnsafe?.chat?.photo_url);
   return (
     <div className={styles["header__container--small"]}>
       <div className={styles["header__top--small"]}>
