@@ -23,8 +23,6 @@ const Header: React.FC<IProps> = ({ }: IProps) => {
   useEffect(()=>{
     setName(webApp?.initDataUnsafe?.user?.username);
     setAvatar(webApp?.initDataUnsafe?.user?.photo_url);
-console.log(webApp?.initDataUnsafe?.user?.photo_url);
-
   },[webApp])
   useEffect(() => {
     /**
@@ -36,6 +34,7 @@ console.log(webApp?.initDataUnsafe?.user?.photo_url);
     setFullHeader(true);
     console.log({ location });
   }, [location]);
+console.log(webApp?.initDataUnsafe?.user?.photo_url);
    
   if (fullHeader) {
     return (
