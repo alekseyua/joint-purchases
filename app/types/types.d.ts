@@ -26,6 +26,8 @@ interface IListOrderShotView {
   status: IStatusDelivery;
   products: IProductsOrder[];
   amounts: IAmounts;
+  address: string;
+  shipment_date: string;
 }
   interface IPaidAmount {
     percent: number;

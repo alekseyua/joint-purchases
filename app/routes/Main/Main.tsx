@@ -48,8 +48,8 @@ export default function Main({
                 status={o.status.name}
                 statusColor={o.status.color}
                 amounts={o.amounts}
-                // address={o.address}
-                // shipmentDate={o.shipment_date}
+                address={o.address}
+                shipmentDate={o.shipment_date}
                 products={o.products}
               />
             );

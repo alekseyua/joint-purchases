@@ -17,8 +17,8 @@ type IProps = {
   statusColor?: string;
   idOrder: number;
   amounts: IAmounts;
-  // shipmentDate: string;
-  // address: string;
+  shipmentDate: string;
+  address: string;
 
   products: IProductsOrder[];
 
@@ -30,12 +30,12 @@ const CardOrderShot: React.FC<IProps> = ({
   status,
   idOrder,
   amounts,
-  // address,
+  address,
   products,
   imageSrc,
   openOrder,
   statusColor = "#fff",
-  // shipmentDate,
+  shipmentDate,
   handleOpenOrder,
 }: IProps) => (
   <div className={styles["card__order-item-container"]}>
@@ -74,10 +74,7 @@ const CardOrderShot: React.FC<IProps> = ({
           <div className={styles["card__order-full-container--detail"]}>
             <Text text="Адрес доставки" style={{ fontWeight: 400 }} />
             <Text
-              text={
-                "not data ws json"
-                // address
-              }
+              text={address}
               style={{ fontWeight: 700 }}
             />
           </div>
@@ -85,10 +82,7 @@ const CardOrderShot: React.FC<IProps> = ({
           <div className={styles["card__order-full-container--detail"]}>
             <Text text="Дата отгрузки" style={{ fontWeight: 400 }} />
             <Text
-              text={
-                "not data ws json"
-                // shipmentDate
-              }
+              text={shipmentDate}
               style={{ fontWeight: 700 }}
             />
           </div>
