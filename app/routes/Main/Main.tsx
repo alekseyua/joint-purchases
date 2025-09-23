@@ -1,3 +1,4 @@
+import React from "react";
 import { icons } from "~/images";
 import type { IListOrderShotView } from "~/types/types.d";
 import Block from "~/UI/Blocks/Block";
@@ -17,7 +18,7 @@ type MainProps = {
   handleOpenOrder: (id: number) => void;
 };
 
-export default function Main({
+ function Main({
   ListOrders,
   openOrder,
   handleOpenOrder,
@@ -79,3 +80,4 @@ export default function Main({
     </Container>
   );
 }
+export default React.memo(Main) ;

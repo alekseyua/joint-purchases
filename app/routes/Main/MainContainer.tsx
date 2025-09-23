@@ -2,8 +2,7 @@ import type { IListOrderShotView } from "~/types/types.d";
 import type { Route } from "./+types/MainContainer";
 import Main from "./Main";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { useTelegram, type TelegramContextType, type TelegramWebApp } from "~/context/TelegramContext";
+import { useTelegram, type TelegramContextType } from "~/context/TelegramContext";
 import { useWebSocket, type WebSocketContext } from "~/context/WebsocketContext";
 
 export function meta({}: Route.MetaArgs) {
@@ -16,41 +15,50 @@ export function meta({}: Route.MetaArgs) {
 export default function MainContainer() {
   const [openOrder, setOpenOrder] = useState<number | null>(null);
   const [listOrder, setListOrder] = useState<IListOrderShotView[]>([]);
-  const {webApp}: TelegramContextType = useTelegram();
   const {
     sendMessage,
     addMessageListener,
     removeMessageListener,
     isConnected,
+    state,
   }: WebSocketContext = useWebSocket();
 
+  // useEffect(() => {
+  //   const handleMessage = (data: any) => {
+  //     const obj: {
+  //       containers_data: IListOrderShotView[];
+  //       message: string;
+  //       type: string;
+  //     } = JSON.parse(data);
+  //     console.log("[Client] Получено сообщение:", obj);
+  //     if (obj?.containers_data) {
+  //       setListOrder(obj.containers_data);
+  //     }
+  //   };
+
+  //   addMessageListener(handleMessage);
+
+  //   return () => {
+  //     removeMessageListener(handleMessage);
+  //   };
+  // }, [addMessageListener, removeMessageListener]);
+
   useEffect(() => {
-    const handleMessage = (data: any) => {
-      const obj: {
-        containers_data: IListOrderShotView[];
-        message: string;
-        type: string;
-      } = JSON.parse(data);
-      console.log("[Client] Получено сообщение:", obj);
-      if(obj?.containers_data){
-           setListOrder(obj.containers_data);
-      }
-    };
-
-    addMessageListener(handleMessage);
-
-    return () => {
-      removeMessageListener(handleMessage);
-    };
-  }, [addMessageListener, removeMessageListener]);
-
+    if(state?.lastMessage?.containers_data?.length){
+      setListOrder(state.lastMessage.containers_data)    
+    }else{
+      setListOrder([])    
+    }
+  }, [state.lastMessage]);
   const handleOpenOrder = (id: number) => {
     if (openOrder === id) {
       return setOpenOrder(null);
     }
-    setOpenOrder(id); 
+    setOpenOrder(id);
   };
   console.log({ listOrder });
+  console.log(state.lastMessage); // последняя полученная
+  console.log(state.messages); // массив всех полученных
   return (
     <Main
       ListOrders={listOrder}

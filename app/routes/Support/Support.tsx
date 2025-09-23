@@ -34,7 +34,7 @@ const Support: React.FC<Props> = ({ listSupports }: Props) => {
               <Block variant="info-container" br={20}>
                 <Offset mt={6} />
                 <Block variant="grid" gtc="2fr 6fr 5fr">
-                  <Icon src={s.avatar ? s.avatar : icons.avatar} size={40} />
+                  <Icon src={s.avatar ? s.avatar : icons.avatar} size={40} style={{overflow: "hidden", borderRadius: '50%'}}/>
                   <Block variant="flex-column">
                     <Text
                       text={s.title}
