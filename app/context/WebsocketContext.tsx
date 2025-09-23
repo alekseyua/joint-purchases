@@ -67,12 +67,12 @@ export const WebSocketProvider: React.FC<IPropsProvider> = ({ children }) => {
       console.log("[WebSocket] Connected");
       setIsConnected(true);
 
-      clearPing();
-      pingIntervalRef.current = setInterval(() => {
-        if (socket.readyState === WebSocket.OPEN) {
-          socket.send(JSON.stringify({ type: "ping" }));
-        }
-      }, PING_INTERVAL_MS);
+      // clearPing();
+      // pingIntervalRef.current = setInterval(() => {
+      //   if (socket.readyState === WebSocket.OPEN) {
+      //     socket.send(JSON.stringify({ type: "ping1" }));
+      //   }
+      // }, PING_INTERVAL_MS);
 
       while (messageQueue.current.length > 0) {
         const msg = messageQueue.current.shift();

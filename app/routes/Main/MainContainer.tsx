@@ -3,7 +3,7 @@ import type { Route } from "./+types/MainContainer";
 import Main from "./Main";
 import { useEffect, useState } from "react";
 import { useTelegram, type TelegramContextType } from "~/context/TelegramContext";
-import { useWebSocket, type WebSocketContext } from "~/context/WebsocketContext";
+import { useWebSocket, type WebSocketContextType } from "~/context/WebsocketContext";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -21,7 +21,7 @@ export default function MainContainer() {
     removeMessageListener,
     isConnected,
     state,
-  }: WebSocketContext = useWebSocket();
+  }: WebSocketContextType = useWebSocket();
 
   // useEffect(() => {
   //   const handleMessage = (data: any) => {
@@ -56,9 +56,13 @@ export default function MainContainer() {
     }
     setOpenOrder(id);
   };
-  console.log({ listOrder });
-  console.log(state.lastMessage); // последняя полученная
-  console.log(state.messages); // массив всех полученных
+  // console.log({ listOrder });
+  // console.log(state.lastMessage); // последняя полученная
+  // console.log(state.messages); // массив всех полученных
+
+
+ 
+
   return (
     <Main
       ListOrders={listOrder}

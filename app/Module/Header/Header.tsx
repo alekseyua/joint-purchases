@@ -7,23 +7,32 @@ import { icons } from "~/images";
 import { useLocation } from "react-router";
 import Button from "~/UI/Button/Button";
 import { Icon } from "~/UI/Icons/Icons";
-import { useTelegram, type TelegramContextType } from "~/context/TelegramContext";
+import {
+  useTelegram,
+  type TelegramContextType,
+} from "~/context/TelegramContext";
+import {
+  useWebSocket,
+  type WebSocketContextType,
+} from "~/context/WebsocketContext";
 
 interface IProps {
   // name?: string;
 }
 
-const Header: React.FC<IProps> = ({ }: IProps) => {
+const Header: React.FC<IProps> = ({}: IProps) => {
   let location = useLocation();
   const [fullHeader, setFullHeader] = useState<boolean>(true);
   const [name, setName] = useState<string | undefined>(undefined);
   const [avatar, setAvatar] = useState<string | undefined>(undefined);
-  const {webApp}: TelegramContextType = useTelegram();
+  const { webApp }: TelegramContextType = useTelegram();
+  const { sendMessage, dispatch }: WebSocketContextType = useWebSocket();
 
-  useEffect(()=>{
+  useEffect(() => {
     setName(webApp?.initDataUnsafe?.user?.username);
     setAvatar(webApp?.initDataUnsafe?.user?.photo_url);
-  },[webApp])
+  }, [webApp]);
+
   useEffect(() => {
     /**
      * если не корневой путь то тогда покажем короткое меню
@@ -32,10 +41,18 @@ const Header: React.FC<IProps> = ({ }: IProps) => {
       return setFullHeader(false);
     }
     setFullHeader(true);
-    console.log({ location });
   }, [location]);
-console.log(webApp?.initDataUnsafe?.user?.photo_url);
-   
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const q = e.target.value;
+    dispatch({type: "CLEAR_MESSAGES"});
+    const msg = JSON.stringify({
+      action: "search",
+      q,
+    });
+    sendMessage(msg);
+  };
+
   if (fullHeader) {
     return (
       <div className={styles["header__container"]}>
@@ -59,6 +76,7 @@ console.log(webApp?.initDataUnsafe?.user?.photo_url);
             iconLeft={icons.searchWhite}
             placeholder={"Поиск по заказам"}
             className={styles["header__search-input"]}
+            onChange={handleSearch}
           />
         </div>
       </div>
