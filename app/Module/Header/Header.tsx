@@ -27,6 +27,7 @@ const Header: React.FC<IProps> = ({}: IProps) => {
   const [avatar, setAvatar] = useState<string | undefined>(undefined);
   const { webApp }: TelegramContextType = useTelegram();
   const { sendMessage, dispatch }: WebSocketContextType = useWebSocket();
+  const [value, setValue] = useState<string>('');
 
   useEffect(() => {
     setName(webApp?.initDataUnsafe?.user?.username);
@@ -43,14 +44,34 @@ const Header: React.FC<IProps> = ({}: IProps) => {
     setFullHeader(true);
   }, [location]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const q = window.localStorage.getItem("q");
+      if (q) {
+        const msg = JSON.stringify({
+          action: "search",
+          q,
+        });
+        sendMessage(msg);
+      }
+    }
+  }, []);
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const q = e.target.value;
-    dispatch({type: "CLEAR_MESSAGES"});
+    setValue(q);
+    dispatch({ type: "CLEAR_MESSAGES" });
     const msg = JSON.stringify({
       action: "search",
       q,
     });
     sendMessage(msg);
+    if (typeof window !== "undefined") {
+      if (q.length > 0) {
+        window.localStorage.setItem("q", q);
+      } else {
+        window.localStorage.setItem("q", "");
+      }
+    }
   };
 
   if (fullHeader) {
@@ -73,6 +94,7 @@ const Header: React.FC<IProps> = ({}: IProps) => {
         </div>
         <div className={styles["header__search-container"]}>
           <Input
+            value={value}
             iconLeft={icons.searchWhite}
             placeholder={"Поиск по заказам"}
             className={styles["header__search-input"]}

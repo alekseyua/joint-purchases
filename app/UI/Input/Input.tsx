@@ -6,6 +6,7 @@ interface IProps {
   placeholder?: string;
   className?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
 }
 
 const Input: React.FC<IProps> = ({
@@ -13,6 +14,7 @@ const Input: React.FC<IProps> = ({
   placeholder,
   className = "",
   onChange,
+  value,
 }) => {
   return (
     <div className={`${className} ${styles["input__container"]}`}>
@@ -20,6 +22,7 @@ const Input: React.FC<IProps> = ({
         <Icon className={styles["input__icon-left"]} src={iconLeft} />
       )}
       <input
+        value={value}
         name="input"
         type="text"
         placeholder={placeholder}
