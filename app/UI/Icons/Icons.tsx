@@ -8,6 +8,8 @@ type IconProps = {
     down?: number;
     style?: React.CSSProperties;
     alt?: string;
+    width?: string;
+    height?: string;
 };
 
 export const Icon: React.FC<IconProps> = ({
@@ -17,6 +19,8 @@ export const Icon: React.FC<IconProps> = ({
     size = 24,
     alt,
     style,
+    width,
+    height,
     className,
 }) => {
     const customStyle: React.CSSProperties = {
@@ -33,8 +37,8 @@ export const Icon: React.FC<IconProps> = ({
             ...style,
         }}
         className={className}
-        width={size}
-        height={size}
+        width={width? width : size}
+        height={height? height : size}
         alt={alt ?? "icon"}
     />;
 };

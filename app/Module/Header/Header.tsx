@@ -78,13 +78,7 @@ const Header: React.FC<IProps> = ({}: IProps) => {
     return (
       <div className={styles["header__container"]}>
         <div className={styles["header__top"]}>
-          <Title
-            tag={"div"}
-            className={styles["header__logo"]}
-            style={{ color: "var(--text-color)" }}
-          >
-            Logo
-          </Title>
+          <Icon src={icons.logo} className={styles["header__logo"]} size={40} width="132"/>
           <Avatar avatar={avatar} />
         </div>
         <div className={styles["header__title-container"]}>
