@@ -14,7 +14,7 @@ import supportBlack from './icons/support-black.svg';
 import boxTaped from './icons/box-taped.svg';
 import arrowDownBlack from './icons/arrow-down-black.svg';
 import arrowLeftBlack from './icons/arrow-left-back.svg';
-import logo from './logo/sovzakup.png';
+import logo from './logo/sovzakup.svg';
 
 export const icons = {
   read,
