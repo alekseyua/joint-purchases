@@ -15,10 +15,12 @@ import boxTaped from './icons/box-taped.svg';
 import arrowDownBlack from './icons/arrow-down-black.svg';
 import arrowLeftBlack from './icons/arrow-left-back.svg';
 import logo from './logo/sovzakup.svg';
+import logo2 from './logo/sovzakup2.svg';
 
 export const icons = {
   read,
   logo,
+  logo2,
   error,
   unread,
   avatar,
