@@ -4,6 +4,7 @@ import styles from "./styles/header.module.scss";
 import Title from "~/UI/Title/Title";
 import Input from "~/UI/Input/Input";
 import { icons } from "~/images";
+// import Logo from "~/images/logo/sovzakup.svg?react";
 import { useLocation } from "react-router";
 import Button from "~/UI/Button/Button";
 import { Icon } from "~/UI/Icons/Icons";
@@ -15,6 +16,7 @@ import {
   useWebSocket,
   type WebSocketContextType,
 } from "~/context/WebsocketContext";
+import {Logo} from "~/images/logo/Logo";
 
 interface IProps {
   // name?: string;
@@ -78,7 +80,8 @@ const Header: React.FC<IProps> = ({}: IProps) => {
     return (
       <div className={styles["header__container"]}>
         <div className={styles["header__top"]}>
-          <Icon src={icons.logo2} className={styles["header__logo"]} size={40} width="132"/>
+          {/* <Icon src={icons.logo2} className={styles["header__logo"]} size={40} width="132"/> */}
+          <Logo />
           <Avatar avatar={avatar} />
         </div>
         <div className={styles["header__title-container"]}>
