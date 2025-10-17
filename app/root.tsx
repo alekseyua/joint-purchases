@@ -13,7 +13,15 @@ import TelegramProvider from "./context/TelegramContext";
 import { WebSocketProvider } from "./context/WebsocketContext";
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  
+  useEffect(()=>{
+    if (typeof window !== "undefined") {
+      try {
+        window.localStorage.setItem("q", "");
+      } catch (error) {
+        console.error("Error accessing localStorage:", error);
+      }
+    }
+  },[])
 
   return (
     <html lang="en">

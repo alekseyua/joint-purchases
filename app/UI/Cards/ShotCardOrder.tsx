@@ -141,7 +141,7 @@ const CardOrderShot: React.FC<IProps> = ({
           </div> */}
           {/* body */}
           {products.map((p: IProductsOrder) => (
-            <div className={styles["card__order-product-body-container"]}>
+            <div key={p.id} className={styles["card__order-product-body-container"]}>
               <div className={styles["card__order-product-card-container"]}>
                 {/* left icon */}
                 <div

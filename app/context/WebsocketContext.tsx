@@ -36,6 +36,7 @@ export interface WebSocketContextType {
 const WebSocketContext = createContext<WebSocketContextType | null>(null);
 
 export const WebSocketProvider: React.FC<IPropsProvider> = ({ children }) => {
+  const customIDTelegram = 320515824; //6446175339
   const { webApp }: TelegramContextType = useTelegram();
   const WEBSOCKET_URL = "wss://botrazbor.ru/ws/lk/";
   const RECONNECT_INTERVAL_MS = 3000;
@@ -96,7 +97,7 @@ export const WebSocketProvider: React.FC<IPropsProvider> = ({ children }) => {
       console.warn("[WebSocket] Disconnected. Reconnecting...");
       setIsConnected(false);
       clearPing();
-      reconnect();
+      // reconnect();
     };
 
     socket.onerror = (error) => {
@@ -111,7 +112,7 @@ export const WebSocketProvider: React.FC<IPropsProvider> = ({ children }) => {
 
     reconnectTimeout.current = setTimeout(() => {
       reconnectTimeout.current = null;
-      const id = webApp?.initDataUnsafe?.user?.id;
+      const id = webApp?.initDataUnsafe?.user?.id ?? customIDTelegram;
       if (id) connect(id);
     }, RECONNECT_INTERVAL_MS);
   }, [connect, webApp]);
@@ -135,7 +136,7 @@ export const WebSocketProvider: React.FC<IPropsProvider> = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const id = webApp?.initDataUnsafe?.user?.id ?? 6446175339;
+    const id = webApp?.initDataUnsafe?.user?.id ?? customIDTelegram;
     if (!id) return;
 
     connect(id);
