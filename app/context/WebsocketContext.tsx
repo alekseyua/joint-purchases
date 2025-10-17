@@ -36,7 +36,7 @@ export interface WebSocketContextType {
 const WebSocketContext = createContext<WebSocketContextType | null>(null);
 
 export const WebSocketProvider: React.FC<IPropsProvider> = ({ children }) => {
-  const customIDTelegram = 320515824; //6446175339
+  const customIDTelegram = ''; //320515824; //6446175339
   const { webApp }: TelegramContextType = useTelegram();
   const WEBSOCKET_URL = "wss://botrazbor.ru/ws/lk/";
   const RECONNECT_INTERVAL_MS = 3000;
